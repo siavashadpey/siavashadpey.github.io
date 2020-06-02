@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>COVID-19 on Sia Shadpey title</title>
+    <link>https://siavashadpey.github.io/tags/covid-19/</link>
+    <description>Recent content in COVID-19 on Sia Shadpey title</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://siavashadpey.github.io/tags/covid-19/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>COVID-19 forecasting</title>
+      <link>https://siavashadpey.github.io/projects/forecasting/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://siavashadpey.github.io/projects/forecasting/</guid>
+      <description>&lt;p&gt;A data-driven model is used to forecast the daily number of new COVID-19 infections in various countries.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

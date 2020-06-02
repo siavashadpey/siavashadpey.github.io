@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>COVID-19 forecasting</title>
+      <link>https://siavashadpey.github.io/projects/forecasting/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://siavashadpey.github.io/projects/forecasting/</guid>
+      <description>&lt;p&gt;A data-driven model is used to forecast the daily number of new COVID-19 infections in various countries.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Markdown Syntax Guide</title>
       <link>https://siavashadpey.github.io/projects/markdown-syntax/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
