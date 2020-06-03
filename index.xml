@@ -13,10 +13,10 @@
     
     <item>
       <title>COVID-19 projections</title>
-      <link>https://siavashadpey.github.io/projects/forecasting/</link>
+      <link>https://siavashadpey.github.io/projects/covid19_projections/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://siavashadpey.github.io/projects/forecasting/</guid>
+      <guid>https://siavashadpey.github.io/projects/covid19_projections/</guid>
       <description>&lt;p&gt;A data-driven model is used to forecast the daily number of new COVID-19 infections in various countries.&lt;/p&gt;</description>
     </item>
     
