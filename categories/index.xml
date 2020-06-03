@@ -6,28 +6,9 @@
     <description>Recent content in Categories on Sia Shadpey</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 02 Jun 1020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://siavashadpey.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>syntax</title>
-      <link>https://siavashadpey.github.io/categories/syntax/</link>
-      <pubDate>Fri, 02 Jun 1020 00:00:00 +0000</pubDate>
-      
-      <guid>https://siavashadpey.github.io/categories/syntax/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>themes</title>
-      <link>https://siavashadpey.github.io/categories/themes/</link>
-      <pubDate>Fri, 02 Jun 1020 00:00:00 +0000</pubDate>
-      
-      <guid>https://siavashadpey.github.io/categories/themes/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>
