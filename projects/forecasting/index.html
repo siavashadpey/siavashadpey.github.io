@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light"><head>
-    <title> Sia Shadpey | COVID-19 forecasting </title>
+    <title> Sia Shadpey | COVID-19 projections </title>
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.72.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="description" content="I&#39;m an aerospace engineer currently working as a software developer for [TMC](https://tmc-employeneurship.com/latest) in Montreal, Canada.">
+    <meta name="description" content="I&#39;m an aerospace engineer currently working as a software developer for TMC North America in Montreal, Canada.">
     
-    <link rel="stylesheet" href="https://siavashadpey.github.io/css/style.min.01863a7e7a4d950e0822d02195a7149fe3d4e0a9f6248b1732f5103826916e44.css" integrity="sha256-AYY6fnpNlQ4IItAhlacUn&#43;PU4Kn2JIsXMvUQOCaRbkQ=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://siavashadpey.github.io/css/style.min.197c1556c8ee1414117be540223038e1cc6176146dfdff03d17a4f79e8f38283.css" integrity="sha256-GXwVVsjuFBQRe&#43;VAIjA44cxhdhRt/f8D0XpPeejzgoM=" crossorigin="anonymous" type="text/css">
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
@@ -34,7 +34,7 @@ if (!doNotTrack) {
         <img src="https://siavashadpey.github.io/images/profile.JPG" alt="profile picture">
         <h3 title=""><a href="/">Sia Shadpey</a></h3>
         <div class="description">
-          <p>I&rsquo;m an aerospace engineer currently working as a software developer for <a href="https://tmc-employeneurship.com/latest">TMC</a> in Montreal, Canada.</p>
+          <p>I&rsquo;m an aerospace engineer currently working as a software developer for TMC North America in Montreal, Canada.</p>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@ if (!doNotTrack) {
     <div class="post-content">
 
       <div class="post-title">
-        <h3>COVID-19 forecasting
+        <h3>COVID-19 projections
         </h3>
         
         </div>
@@ -92,34 +92,52 @@ if (!doNotTrack) {
     <p>A data-driven model is used to forecast the daily number of new COVID-19 infections in various countries.</p>
 <hr>
 <h2 id="predictions">Predictions</h2>
-<p>Dropdown menu for different countries</p>
-<p>Shows parameter intervals.</p>
+<img src="../covid19/linear.png" alt="Germany"  class="center"/>
+TODO: Dropdown menu for different countries. Shows parameter intervals.
 <hr>
 <h2 id="about-the-forecasting-tool">About the forecasting tool</h2>
-<ul>
-<li>tool I developed</li>
-<li>uses Bayesian inference to try to fit the SEIR model to the reported data</li>
-<li>Then, the model can be used to make predictions about the daily number of new infections over the next few days.</li>
-</ul>
+<p>The developed forecasting tool models the reported daily number of new infections using the epidemiological SEIR equations with Bayesian inference. A high-level explanation of the SEIR model, Bayesian inference, and the accuracy of the projections can be found below.</p>
 <h4 id="what-is-the-seir-model">What is the SEIR model?</h4>
-<p>Show figure and parameters</p>
+<p>After a susceptible individual is infected, they move to the Exposed, Infectious, and Recovered compartments sequentially.</p>
+<p>To model the spread of an infectious disease in a population, one can use the SEIR epidemiological model. The idea is to split the population into 4 groups &ndash; <strong>S</strong>usceptible, <strong>E</strong>xposed, <strong>I</strong>nfectious, and <strong>R</strong>ecovered groups &ndash; and to keep track of how people transit from one group to another. In the beginning, the entire population is in the Susceptible compartment because everyone is <em>susceptible</em> to being infected. To explain the 3 other compartments, let me use an example. Let&rsquo;s say Alex is infected with COVID-19 and Riley is not. When hanging out together, Alex infects Riley who then moves from the Susceptible group to the Exposed group. At this stage and for the duration of the <strong>latent period</strong>, Riley is infected but not yet infectious which means she cannot transmit the disease. Afterwards, Riley transits to the Infectious group because he can infect other people. Finally, after the <strong>infectious period</strong> is over, Riley enters the Recovered group and can no longer infect anyone or be infected (either because she is immune to the disease or she has died). A detailed explanation of compartmental epidemiological models can be found <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">here</a>.</p>
 <h4 id="what-is-bayesian-inference">What is Bayesian inference?</h4>
-<p>The core idea of model fitting is to answer: &ldquo;Which parameter values&rsquo; best describe the reported daily number of infections?&rdquo; But there isn&rsquo;t one correct value for each parameter; instead, there might be a range of values.  but So we should really be asking ourselves &ldquo;what range of parameter values best describe the reported daily number of infections?&rdquo;. Bayesian inference seeks to answer the latter question.</p>
-<h4 id="where-is-the-data-obtained">Where is the data obtained?</h4>
-<p>University of Washington which uses various sources and verifies the data daily.</p>
+<p>If we knew exactly the <strong>contact rate</strong> (a measure of infection rate), the <strong>latent</strong> and <strong>infectious periods</strong>, we would be able to build a very accurate SEIR model and allow our public health policymakers to make informed decisions based on the model&rsquo;s projections.</p>
+<p>Unfortunately, these epidemiological parameters are mostly unknown and can actually vary from region to region and even from individual to individual.</p>
+<p>One way of addressing this issue is to work our way backwards from available regional data and infer probable values for each parameter. Or, in other words, we try to answer the question: &ldquo;which parameter values&rsquo; best describe the reported daily number of infections?&rdquo; A popular and effective statistical method suited for this task is Bayesian <cite>inference<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></cite>. Once we have our answer, we can make projections about the next few days while also quantifying the uncertainty in our predictions.</p>
+<h4 id="where-is-the-data-from">Where is the data from?</h4>
+<p>The data is obtained from the <a href="https://hgis.uw.edu/2020/03/18/covid-19-novel-coronavirus-infection-map/">University of Washington&rsquo;s Humanistic GIS Lab</a> who, in turn, collects it from various sources. You can find more information about the sources <a href="https://github.com/jakobzhao/virus">here</a>.)</p>
+<p>The forecasting tool also takes into account national pandemic lockdown dates and its effect on slowing down the spread of COVID-19. The lockdown dates are obtained from various sources.</p>
 <h4 id="how-accurate-are-the-predictions">How accurate are the predictions?</h4>
-<p>depeneds on data, assumptions. No liabilities.</p>
-<h4 id="what-are-the-models-assumptions">What are the model&rsquo;s assumptions?</h4>
+<p>Since the model is data-driven, its accuracy heavily relies on the quality of the data. Various factors can impact the quality of the data such as limited testing, undetected infected individuals, and reporting delays.</p>
+<p>The model&rsquo;s assumptions (listed below) also impact the accuracy of the predictions.</p>
+<ul>
+<li>
+<p>Once recovered, an individual cannot be re-infected. According to the <a href="https://www.cdc.gov/coronavirus/2019-ncov/hcp/faq.html">CDC</a>, the immune response of COVID-19 is not yet known.</p>
+</li>
+<li>
+<p>The contact rate is assumed constant before the start of a lockdown and decreases linearly until it reaches a constant post-lockdown. The pre- and post-lockdown contact rates and the transition period are inferred by the model.</p>
+</li>
+</ul>
 <h4 id="are-there-other-forecasting-models">Are there other forecasting models?</h4>
-<h2 id="more-info">More info</h2>
-<p>Computational resources are provided by <a href="https://www.computecanada.ca/featured/support-for-covid-19-research-projects/">Compute Canada</a> and Prof. Zingg at the University of Toronto. If you have any questions, concerns, or suggestions, please reach me at <a href="mailto:siavosh@ualberta.ca">siavosh@ualberta.ca</a>.</p>
+<p>There exist various other COVID-19 forecasting tools each potentially relying on different mathematical models and underlying assumptions. Two publicly-available ones are the models from <a href="https://www.cse-lab.ethz.ch/coronavirus/">ETH Zurich CSE Lab</a> and <a href="https://covid19.healthdata.org/united-states-of-america">University of Washington&rsquo;s IHME</a>.</p>
+<p>This <a href="https://gabgoh.github.io/COVID/index.html">epidemic calculator</a> is also another great source to visualize the role that each parameter in the SEIR model plays.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>Many thanks to <a href="https://www.computecanada.ca/featured/support-for-covid-19-research-projects/">Compute Canada</a> and Professor David Zingg at the University of Toronto for providing access to their computational resources.</p>
+<p>If you have any questions, concerns, or suggestions, please send me an email at <a href="mailto:siavosh@ualberta.ca">siavosh@ualberta.ca</a>.</p>
+<section class="footnotes" role="doc-endnotes">
 <hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>The specific Bayesian inference method we used is the No-U-Turn Sampler Hamiltionian Monte Carlo method as implemented in the <a href="https://docs.pymc.io">PyMC3</a> open-source library. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
     </div>
     <div class="post-footer">
       <div class="info">
         
         
-    <span class="separator"><a class="tag" href="/tags/covid-19/">COVID-19</a><a class="tag" href="/tags/forecasting/">forecasting</a></span>
+    <span class="separator"><a class="tag" href="/tags/covid-19/">COVID-19</a></span>
 
       </div>
     </div>
