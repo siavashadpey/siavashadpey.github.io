@@ -4,7 +4,7 @@
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.72.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="description" content="I&#39;m an aerospace engineer currently working as a software developer for TMC North America in Montreal, Canada.">
     
-    <link rel="stylesheet" href="https://siavashadpey.github.io/css/style.min.f7b798f06650654ee44cbd9e46cebb80c2a00237e0b0077185a31f8d864f7e9a.css" integrity="sha256-97eY8GZQZU7kTL2eRs67gMKgAjfgsAdxhaMfjYZPfpo=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://siavashadpey.github.io/css/style.min.c9d8bc7feb5a32fade2ac924a80b1496a13c86c4e27fd1ca3ac943ef26f09ebf.css" integrity="sha256-ydi8f&#43;taMvreKskkqAsUlqE8hsTif9HKOslD7ybwnr8=" crossorigin="anonymous" type="text/css">
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
@@ -27,7 +27,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-<script type="text/javascript" src="https://siavashadpey.github.io/js/anatole-header.min.ee6706946c3d9ea23e556b758d3c6da437c9e1cce9814680caac31ebecc66fd9.js" integrity="sha256-7mcGlGw9nqI&#43;VWt1jTxtpDfJ4czpgUaAyqwx6&#43;zGb9k=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://siavashadpey.github.io/js/anatole-header.min.f25273db283f1d45f2cc613bcc0febd2a69a8ff7f1bb05b2330c04c73c4e50b4.js" integrity="sha256-8lJz2yg/HUXyzGE7zA/r0qaaj/fxuwWyMwwExzxOULQ=" crossorigin="anonymous"></script>
 </head><body><div id="mySidebar" class="sidebar animated fadeInDown">
     <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
     <div class="logo-title">
@@ -93,20 +93,27 @@ if (!doNotTrack) {
     <p>A data-driven model is used to forecast the daily number of new COVID-19 infections in various countries.</p>
 <hr>
 <h2 id="predictions">Predictions</h2>
-<img src="../covid19/germany_linear.png"  class="center">
-TODO: Dropdown menu for different countries. Shows parameter intervals.
+<div class="custom-select">
+	<select id="selected_country" onchange="setCountryFigure(); ">
+		<option value="../covid19/germany_linear.png">Select country:</option>
+	    <option value="../covid19/germany_linear.png">Germany</option>
+	    <option value="../covid19/france_linear.png">France</option>
+	</select>
+</div>
+<img id="country_figure" src="../covid19/germany_linear.png" class="img" onclick="window.open(this.src)">
+<p>Explain figure. The reported data are 7-day averages. Predictions are made for 7 days.</p>
 <hr>
 <h2 id="about-the-forecasting-tool">About the forecasting tool</h2>
-<p>The developed forecasting tool models the reported daily number of new infections using the epidemiological SEIR equations with Bayesian inference. A high-level explanation of the SEIR model, Bayesian inference, and the accuracy of the projections can be found below.</p>
+<p>The developed forecasting tool models the reported daily number of new infections using the epidemiological SEIR equations with Bayesian inference.</p>
 <h4 id="what-is-the-seir-model">What is the SEIR model?</h4>
 <p>To model the spread of an infectious disease in a population, one can use the SEIR epidemiological model. The idea is to split the population into 4 groups &ndash; <strong>S</strong>usceptible, <strong>E</strong>xposed, <strong>I</strong>nfectious, and <strong>R</strong>ecovered groups &ndash; and to keep track of how people transit from one group to another. In the beginning, the entire population is in the Susceptible compartment because everyone is <em>susceptible</em> to being infected. To explain the 3 other compartments, let me use an example. Let&rsquo;s say Alex is infected with COVID-19 and Riley is not. When hanging out together, Alex infects Riley who then moves from the Susceptible group to the Exposed group. At this stage and for the duration of the <strong>latent period</strong>, Riley is infected but not yet infectious which means she cannot transmit the disease. Afterwards, Riley transits to the Infectious group because she can infect other people. Finally, after the <strong>infectious period</strong> is over, Riley enters the Recovered group and can no longer infect anyone or be infected (either because she is immune to the disease or she has died). A detailed explanation of compartmental epidemiological models can be found <a href="https://www.idmod.org/docs/hiv/model-seir.html">here</a>.</p>
-<p><img src="../covid19/SEIR.png" alt="SEIR" title="tiitt"></p>
+<p><img src="../covid19/SEIR.png" alt="SEIR" title="SEIR"></p>
 <p><em>After a susceptible individual is infected, they move to the Exposed, Infectious, and Recovered compartments sequentially.
 source: <a href="https://www.idmod.org/docs/hiv/model-seir.html">IDM</a>.</em></p>
 <h4 id="what-is-bayesian-inference">What is Bayesian inference?</h4>
 <p>If we knew exactly the <strong>contact rate</strong> (a measure of infection rate), the <strong>latent</strong> and <strong>infectious periods</strong>, we would be able to build a very accurate SEIR model and allow our public health policymakers to make informed decisions based on the model&rsquo;s projections.</p>
 <p>Unfortunately, these epidemiological parameters are mostly unknown and can actually vary from region to region and even from individual to individual.</p>
-<p>One way of addressing this issue is to work our way backwards from available regional data and infer probable values for each parameter. Or, in other words, we try to answer the question: &ldquo;which parameter values&rsquo; best describe the reported daily number of infections?&rdquo; A popular and effective statistical method suited for this task is Bayesian inference<cite><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></cite>. Once we have our answer, we can make projections about the next few days while also quantifying the uncertainty in our predictions.</p>
+<p>One way of addressing this issue is to work our way backwards from available regional data and infer probable values for each parameter and answer the question: &ldquo;which parameter values&rsquo; best describe the reported daily number of infections?&rdquo; A popular and effective statistical method suited for this task is Bayesian inference<cite><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></cite>. Once we have our answer, we can make projections about the next few days while also quantifying the uncertainty in our predictions.</p>
 <h4 id="where-is-the-data-from">Where is the data from?</h4>
 <p>The data is obtained from the <a href="https://hgis.uw.edu/2020/03/18/covid-19-novel-coronavirus-infection-map/">University of Washington&rsquo;s Humanistic GIS Lab</a> who, in turn, collects it from various sources. You can find more information about the sources <a href="https://github.com/jakobzhao/virus">here</a>.</p>
 <p>The forecasting tool also takes into account national pandemic lockdown dates and its effect on slowing down the spread of COVID-19. The lockdown dates are obtained from various sources.</p>
