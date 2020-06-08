@@ -4,7 +4,7 @@
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.72.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="description" content="I&#39;m an aerospace engineer currently working as a software developer for TMC North America in Montreal, Canada.">
     
-    <link rel="stylesheet" href="https://siavashadpey.github.io/css/style.min.c9d8bc7feb5a32fade2ac924a80b1496a13c86c4e27fd1ca3ac943ef26f09ebf.css" integrity="sha256-ydi8f&#43;taMvreKskkqAsUlqE8hsTif9HKOslD7ybwnr8=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://siavashadpey.github.io/css/style.min.85ed137666ac5373513379b5df9f6ff550bd611c82edfffe063602cdf0138ad2.css" integrity="sha256-he0TdmasU3NRM3m1359v9VC9YRyC7f/&#43;BjYCzfATitI=" crossorigin="anonymous" type="text/css">
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
@@ -95,13 +95,16 @@ if (!doNotTrack) {
 <h2 id="predictions">Predictions</h2>
 <div class="custom-select">
 	<select id="selected_country" onchange="setCountryFigure(); ">
-		<option value="../covid19/germany_linear.png">Select country:</option>
-	    <option value="../covid19/germany_linear.png">Germany</option>
-	    <option value="../covid19/france_linear.png">France</option>
+		<option value="../covid19/us.html"          >Select country:</option>
+	    <option value="../covid19/us.html"          >USA</option>
+	    <option value="../covid19/germany.html"     >Germany</option>
+	    <option value="../covid19/uk.html"          >United Kingdom</option>
+	    <option value="../covid19/spain.html"       >Spain</option>
+	    <option value="../covid19/italy.html"       >Italy</option>
+	    <option value="../covid19/netherlands.html" >Netherlands</option>
 	</select>
 </div>
-<img id="country_figure" src="../covid19/germany_linear.png" class="img" onclick="window.open(this.src)">
-<p>Explain figure. The reported data are 7-day averages. Predictions are made for 7 days.</p>
+<iframe id="country_figure" class="custom-iframe" src="../covid19/us.html"></iframe>
 <hr>
 <h2 id="about-the-forecasting-tool">About the forecasting tool</h2>
 <p>The developed forecasting tool models the reported daily number of new infections using the epidemiological SEIR equations with Bayesian inference.</p>
