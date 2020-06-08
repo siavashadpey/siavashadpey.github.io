@@ -26,9 +26,9 @@ def covid19_html_plot(dirpath, region):
 
 	# y sims
 	y_sims = np.genfromtxt(dirpath + os.path.sep + "y_sims.csv", delimiter=',')
-	y_mean = np.mean(y_sims, axis=0)
-	y_lower = np.percentile(y_sims, q=2.5, axis=0)
-	y_upper = np.percentile(y_sims, q=97.5, axis=0)
+	y_mean =  np.mean(y_sims, axis=0).astype(int)
+	y_lower = np.percentile(y_sims, q=2.5, axis=0).astype(int)
+	y_upper = np.percentile(y_sims, q=97.5, axis=0).astype(int)
 	
 	#y_obs_cumm = np.cumsum(y_obs)
 	#y_mean_cumm = np.cumsum(y_mean)
