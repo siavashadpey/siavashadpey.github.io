@@ -35,10 +35,10 @@ def covid19_html_plot(dirpath, region):
 	#y_lower_cumm = np.cumsum(y_lower)
 	#y_upper_cumm = np.cumsum(y_upper)
 	
-	trace1 = go.Scatter(x=dates, y=y_upper, name = '95% credible interval', fillcolor='rgba(0,100,80,0.2)', line_color='rgba(255,255,255,0)', showlegend=False)
-	trace2 = go.Scatter(x=dates, y=y_lower, fill='tonexty', fillcolor='rgba(0,100,80,0.2)', line_color='rgba(255,255,255,0)', name='95% credible interval')
+	trace1 = go.Scatter(x=dates, y=y_upper, name = '95% confidence interval', fillcolor='rgba(0,100,80,0.2)', line_color='rgba(255,255,255,0)', showlegend=False)
+	trace2 = go.Scatter(x=dates, y=y_lower, fill='tonexty', fillcolor='rgba(0,100,80,0.2)', line_color='rgba(255,255,255,0)', name='95% confidence interval')
 	trace3 = go.Scatter(x=dates, y=y_mean, name = 'mean', line_color='rgb(0,100,80)', line=dict(width = 4))
-	trace4 = go.Scatter(x=dates, y=y_obs, name = 'reported data', mode = 'markers', line_color='rgb(36, 21, 113)', marker=dict(size=10))
+	trace4 = go.Scatter(x=dates, y=y_obs, name = 'reported data (7-day average)', mode = 'markers', line_color='rgb(36, 21, 113)', marker=dict(size=10))
 
 
 	data = [trace1, trace2, trace3, trace4]
@@ -48,10 +48,10 @@ def covid19_html_plot(dirpath, region):
 	     buttons=list([
 	        dict(label='Log',
 	             method='update',
-	             args=[{'visible': [True, True, True, True, True]}, {'yaxis': {'type': 'log', 'title': 'New daily cases'}}]),
+	             args=[{'visible': [True, True, True, True, True]}, {'yaxis': {'type': 'log', 'title': 'Daily new cases'}}]),
 	        dict(label='Linear',
 	             method='update',
-	             args=[{'visible': [True, True, True, True, True]}, {'yaxis': {'type': 'linear', 'title': 'New daily cases'}}])
+	             args=[{'visible': [True, True, True, True, True]}, {'yaxis': {'type': 'linear', 'title': 'Daily new cases'}}])
 	        ]),
 	     type = "buttons",
 	     direction="right",
@@ -64,7 +64,7 @@ def covid19_html_plot(dirpath, region):
 	])
 
 	# plots
-	fig = go.Figure(data=data, layout=dict(updatemenus=updatemenus, yaxis_title='New daily cases',
+	fig = go.Figure(data=data, layout=dict(updatemenus=updatemenus, yaxis_title='Daily new cases',
 	                  xaxis_title='Date',
 	                  template='simple_white'))
 
@@ -93,12 +93,22 @@ def main():
 	parser = argparse.ArgumentParser(description="Generates the html plot of the specified region.")
 	parser.add_argument('--folder', '-f', default='./data/', help='path of data folder')
 	parser.add_argument('--region', '-r', default='canada', help='region of interest')
+	parser.add_argument('--all', '-a', action='store_true', default=False, help='generate the plots for all available regions')
 
 	args = parser.parse_args()
 
 	folder = args.folder
 	region = args.region.lower()
-	covid19_html_plot(folder, region)
+	is_all = args.all
+
+	all_regions = ['australia', 'canada', 'france', 'germany', 'italy', 'netherlands',
+	               'spain', 'switzerland', 'uk', 'us']
+
+	if is_all: 
+		for region in all_regions:
+			covid19_html_plot(folder, region)
+	else:             
+		covid19_html_plot(folder, region)
 
 if __name__ == '__main__':
 	main()

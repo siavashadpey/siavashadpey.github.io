@@ -17,10 +17,14 @@ updatemenus = list([
          buttons=list([
             dict(label='Log Scale',
                  method='update',
-                 args=[{'yaxis': {'type': 'log'}}]),
+                 args=[{'visible': [True, True]},
+                       {'title': 'Log scale',
+                        'yaxis': {'type': 'log'}}]),
             dict(label='Linear Scale',
                  method='update',
-                 args=[{'yaxis': {'type': 'linear'}}])
+                 args=[{'visible': [True, False]},
+                       {'title': 'Linear scale',
+                        'yaxis': {'type': 'linear'}}])
             ]),
         )
     ])
