@@ -6,10 +6,19 @@
     <description>Recent content on Sia Shadpey</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://siavashadpey.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Portfolio rebalancing calculator</title>
+      <link>https://siavashadpey.github.io/projects/rebalancing/</link>
+      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://siavashadpey.github.io/projects/rebalancing/</guid>
+      <description>Calculator Click here to be redirected to the portfolio rebalancing calculator.</description>
+    </item>
     
     <item>
       <title>COVID-19 projections</title>
